@@ -46,7 +46,7 @@
                     <div class="forget">
                         <label for=""><input type="checkbox">Lembrar-se <a href="">Lembrar Senha</a></label>
                     </div>
-                    <button><ion-icon name="paper-plane-outline" id="enviar-itens"></ion-icon></button>
+                    <button><ion-icon name="paper-plane-outline"></ion-icon></button>
                     <div class="registrar">
                         <p>Não tenho conta <a href="cadastrar.php">registar-se</a></p>
                     </div>
