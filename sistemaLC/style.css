@@ -274,3 +274,10 @@ a{
         left: 0;
     }
 }
+
+.span-required{
+    font-size: 12px;
+    margin: 3px 0 0 1px;
+    color: red;
+    display: none;
+}

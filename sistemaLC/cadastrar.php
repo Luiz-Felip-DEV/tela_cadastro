@@ -1,22 +1,16 @@
 <?php
-    function inserirDados($nome,$telefone,$email,$senha){
-        $conn = new mysqli ("localhost","root", "", "dog_ti");
-        if ($conn->connect_error){
-            echo "ERRO: " . $conn->connect_error;
-        }else{
-            $stmt = $conn->prepare("INSERT INTO cadastro_dog (nome_cadas, telefone_cadas, email_cadas, senha_cadas) VALUES(?,?,?,?)");
-            $stmt->bind_param("ssss", $nome, $telefone,$email,$senha);
-            $stmt->execute();
-        }
+      if(isset($_POST['submit'])){
 
-    }
-
-    $nome = "Patricia Lima";
-    $telefone = "349827462472";
-    $email = "pattirib897@gmail.com";
-    $senha = "lima45673";
+            $nomeUsuario = $_POST['nome'];
+            $emailUsuario = $_POST['email'];
+            $telefoneUsuario = $_POST['telefone'];
+            $senhaUsuario = $_POST['senha'];
+            require_once('func.phtml');
+            inserirUsuario($nomeUsuario,$emailUsuario,$telefoneUsuario,$senhaUsuario);
+            $mensagem = "DADOS ENVIADOS COM SUCESSO, VOLTE SEMPRE";
+            echo '<script>alert("'.$mensagem.'");</script>';
     
-    inserirDados($nome, $telefone, $email,$senha);
+      }
 
 ?>
 
@@ -52,36 +46,53 @@
     <section class="cadastro">
         <div class="form-box-cadastro">
             <div class="form-value">
-                <form action="">
-                    <h2>CADASTRO</h2>
+                <form action="cadastrar.php" method="POST">
+                    <h2>CADASTRO <ion-icon name="logo-github"></ion-icon></h2>
+
                     <div class="inputbox">
-                        <ion-icon name="mail-outline"></ion-icon>
-                        <input type="text" required>
-                        <label for="">Email</label>
+                        <ion-icon name="person-outline"></ion-icon>
+                        <input name= "nome" type="text" required >
+                        <label for="">Nome</label>
+                        <span class="span-required">Nome deve conter no mínimo 3 caracteres</span>
                     </div>
 
                     <div class="inputbox">
                         <ion-icon name="mail-outline"></ion-icon>
-                        <input type="text" required>
-                        <label for="">Confirmar Email</label>
+                        <input name= "email" type="text" required>
+                        <label for="">Email</label>
+                        <span class="span-required">Digite um email válido</span>
                     </div>
                         
                         <div class="inputbox">
                             <ion-icon name="call-outline"></ion-icon>
-                            <input type="tel" required>
+                            <input name="telefone" type="tel" required>
                             <label for="">Telefone</label>
+                            <span class="span-required">Digite um telefone válido</span>
                         </div>
                     <div class="inputbox">
                         <ion-icon name="lock-closed-outline"></ion-icon>
-                        <input type="password" required>
+                        <input name="senha" type="password" required>
                         <label for="">Senha</label>
                     </div>
 
-                    <button>Cadastrar</button>
+                    <div class="inputbox">
+                        <ion-icon name="lock-closed-outline"></ion-icon>
+                        <input name="conf_senha" type="password" required>
+                        <label for="">Confirmar Senha</label>
+                    </div>
+
+                    <button type="submit" name="submit" id="submit">Cadastrar</button>
                     
     </section>
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="
+    https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
+    "></script>
+    <link href="
+    https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
+    " rel="stylesheet">
+    </script>
 </body>
 </html>
