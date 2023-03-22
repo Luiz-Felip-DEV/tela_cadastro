@@ -5,10 +5,29 @@
             $emailUsuario = $_POST['email'];
             $telefoneUsuario = $_POST['telefone'];
             $senhaUsuario = $_POST['senha'];
-            require_once('func.phtml');
-            inserirUsuario($nomeUsuario,$emailUsuario,$telefoneUsuario,$senhaUsuario);
-            $mensagem = "DADOS ENVIADOS COM SUCESSO, VOLTE SEMPRE";
-            echo '<script>alert("'.$mensagem.'");</script>';
+            $confirmarUsuario = $_POST['conf_senha'];
+
+            $testeTelefone = "".$telefoneUsuario;
+
+            if(strlen($nomeUsuario) >= 3){
+                if(strlen($testeTelefone) == 10 || strlen($testeTelefone) == 11){
+                    if ($senhaUsuario === $confirmarUsuario){
+                        require_once('func.phtml');
+                        inserirUsuario(ucwords($nomeUsuario),$emailUsuario,intval($testeTelefone),$senhaUsuario);
+                        $mensagem = "DADOS ENVIADOS COM SUCESSO, VOLTE SEMPRE";
+                        echo '<script>alert("'.$mensagem.'");</script>';
+                    }else{
+                        $mensagem = "ERROR! Confirmação de senha incorreta";
+                        echo '<script>alert("'.$mensagem.'");</script>';
+                    }
+                }else{
+                    $mensagem = "ERROR! Número de telefone inválido!";
+                    echo '<script>alert("'.$mensagem.'");</script>';
+                }
+            }else{
+                $mensagem = "ERROR! NOME DE USUARIO COM MENOS DE 3 CARACTERES";
+                echo '<script>alert("'.$mensagem.'");</script>';
+            }
       }
 ?>
 
@@ -63,7 +82,7 @@
                         
                         <div class="inputbox">
                             <ion-icon name="call-outline"></ion-icon>
-                            <input name="telefone" type="tel" required>
+                            <input name="telefone" type="number" required>
                             <label for="">Telefone</label>
                             <span class="span-required">Digite um telefone válido</span>
                         </div>
@@ -85,12 +104,6 @@
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <script src="
-    https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
-    "></script>
-    <link href="
-    https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
-    " rel="stylesheet">
-    </script>
+    
 </body>
 </html>

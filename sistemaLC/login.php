@@ -30,7 +30,7 @@
         <div class="form-box">
             <div class="form-value">
                 <form action="">
-                    <h2>Login</h2>
+                    <h2>Login <ion-icon name="logo-github"></h2>
                     <div class="inputbox">
                         <ion-icon name="mail-outline"></ion-icon>
                         <input type="text" required>
@@ -46,9 +46,9 @@
                     <div class="forget">
                         <label for=""><input type="checkbox">Lembrar-se <a href="">Lembrar Senha</a></label>
                     </div>
-                    <button>Login</button>
+                    <button><ion-icon name="paper-plane-outline" id="enviar-itens"></ion-icon></button>
                     <div class="registrar">
-                        <p>Não tenho conta <a href="">registar-se</a></p>
+                        <p>Não tenho conta <a href="cadastrar.php">registar-se</a></p>
                     </div>
                 </form>
             </div>

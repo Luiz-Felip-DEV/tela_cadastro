@@ -79,7 +79,7 @@ section{
 .form-box-cadastro{
     position: relative;
     width: 400px;
-    height: 600px;
+    height: 650px;
     background: transparent;
     border: 2px solid rgba(255, 255, 255, 0.5);
     border-radius: 20px;
@@ -280,4 +280,10 @@ a{
     margin: 3px 0 0 1px;
     color: red;
     display: none;
+}
+
+#enviar-itens{
+    align-items: center;
+    color: #2900f8;
+    font-size: 10rem;
 }
