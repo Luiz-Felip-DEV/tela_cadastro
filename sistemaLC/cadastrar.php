@@ -9,9 +9,7 @@
             inserirUsuario($nomeUsuario,$emailUsuario,$telefoneUsuario,$senhaUsuario);
             $mensagem = "DADOS ENVIADOS COM SUCESSO, VOLTE SEMPRE";
             echo '<script>alert("'.$mensagem.'");</script>';
-    
       }
-
 ?>
 
 
