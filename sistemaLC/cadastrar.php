@@ -16,6 +16,7 @@
                         inserirUsuario(ucwords($nomeUsuario),$emailUsuario,intval($testeTelefone),$senhaUsuario);
                         $mensagem = "DADOS ENVIADOS COM SUCESSO, VOLTE SEMPRE";
                         echo '<script>alert("'.$mensagem.'");</script>';
+                        
                     
                     }else{
                         $mensagem = "ERROR! Confirmação de senha incorreta";

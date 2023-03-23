@@ -1,29 +1,38 @@
 <?php 
 
-    if (isset($_POST['submit'])){
-        $emailLogin = $_POST['login'];
-        $senhaLogin = $_POST['senha'];
-
-        require_once("dao.phtml");
-        
-        if(trazerDados($emailLogin, $senhaLogin) == 1){
-            print "<script>console.log('VOCÊ ENTROOUUUUUU') </script>";
-        
+        include('config.php');
+    if (isset($_POST['login']) || isset($_POST['senha'])){
+        if(strlen($_POST['email'] == 0)){
+            "<script>alert('Preencha seu email!')</script>";
+        }else if(strlen($_POST['senha']) == 0){
+            "<script>alert('Preencha sua senha!')</script>";
         }else{
-            print "<script>console.log('ACESSO NEGADO')</script>";
+            $email = $conn->real_escape_string($_POST['login']);
+            $senha = $conn->real_escape_string($_POST['senha']);
+
+            $sql_code = "SELECT * FROM cadastro_dog WHERE email_cadas = '$email' AND senha_cadas = '$senha' ";
+
+            $sql_query = $conn->query($sql_code) or die ("Falha na execução do código SQL: " . $conn->error);
+
+            $quantidade = $sql_query->num_rows;
+
+            if($quantidade == 1){
+                $usuario = $sql_query->fetch_assoc();
+
+                if(!isset($_SESSION)){
+                    session_start();
+                }
+
+                $_SESSION['user'] = $usuario['id'];
+                $_SESSION['nome'] = $usuario['nome'];
+            }else{
+                "<script>alert('Falha ao Logar! E-mail ou senha incorreos') </script>";
+            }
+
         }
-
-
-
-
     }
 
 ?>
-
-
-
-
-
 
 <!DOCTYPE html>
 <html lang="pt-BR">
