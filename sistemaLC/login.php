@@ -1,5 +1,32 @@
+<?php 
+
+    if (isset($_POST['submit'])){
+        $emailLogin = $_POST['login'];
+        $senhaLogin = $_POST['senha'];
+
+        require_once("dao.phtml");
+        
+        if(trazerDados($emailLogin, $senhaLogin) == 1){
+            print "<script>console.log('VOCÊ ENTROOUUUUUU') </script>";
+        
+        }else{
+            print "<script>console.log('ACESSO NEGADO')</script>";
+        }
+
+
+
+
+    }
+
+?>
+
+
+
+
+
+
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -29,24 +56,24 @@
     <section>
         <div class="form-box">
             <div class="form-value">
-                <form action="">
+                <form action="login.php" method="POST">
                     <h2>Login <ion-icon name="logo-github"></h2>
                     <div class="inputbox">
                         <ion-icon name="mail-outline"></ion-icon>
-                        <input type="text" required>
+                        <input type="text" name="login" required>
                         <label for="">Email</label>
                     </div>
 
                     <div class="inputbox">
                         <ion-icon name="lock-closed-outline"></ion-icon>
-                        <input type="password" required>
+                        <input type="password" name="senha" required>
                         <label for="">Senha</label>
                     </div>
 
                     <div class="forget">
                         <label for=""><input type="checkbox">Lembrar-se <a href="">Lembrar Senha</a></label>
                     </div>
-                    <button><ion-icon name="paper-plane-outline"></ion-icon></button>
+                    <button type="submit" name="submit" id="submit"><ion-icon name="paper-plane-outline"></ion-icon></button>
                     <div class="registrar">
                         <p>Não tenho conta <a href="cadastrar.php">registar-se</a></p>
                     </div>

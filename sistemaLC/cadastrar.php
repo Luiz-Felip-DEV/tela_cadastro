@@ -12,10 +12,11 @@
             if(strlen($nomeUsuario) >= 3){
                 if(strlen($testeTelefone) == 10 || strlen($testeTelefone) == 11){
                     if ($senhaUsuario === $confirmarUsuario){
-                        require_once('func.phtml');
+                        require_once('dao.phtml');
                         inserirUsuario(ucwords($nomeUsuario),$emailUsuario,intval($testeTelefone),$senhaUsuario);
                         $mensagem = "DADOS ENVIADOS COM SUCESSO, VOLTE SEMPRE";
                         echo '<script>alert("'.$mensagem.'");</script>';
+                    
                     }else{
                         $mensagem = "ERROR! Confirmação de senha incorreta";
                         echo '<script>alert("'.$mensagem.'");</script>';
@@ -33,7 +34,7 @@
 
 
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
