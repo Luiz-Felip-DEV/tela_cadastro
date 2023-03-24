@@ -2,31 +2,27 @@
 
         include('config.php');
     if (isset($_POST['login']) || isset($_POST['senha'])){
-        if(strlen($_POST['email'] == 0)){
+        if(strlen($_POST['login'] == 0)){
             "<script>alert('Preencha seu email!')</script>";
         }else if(strlen($_POST['senha']) == 0){
             "<script>alert('Preencha sua senha!')</script>";
         }else{
-            $email = $conn->real_escape_string($_POST['login']);
-            $senha = $conn->real_escape_string($_POST['senha']);
+            $email = $mysqli->real_escape_string($_POST['login']);
+            $senha = $mysqli->real_escape_string($_POST['senha']);
 
             $sql_code = "SELECT * FROM cadastro_dog WHERE email_cadas = '$email' AND senha_cadas = '$senha' ";
 
-            $sql_query = $conn->query($sql_code) or die ("Falha na execução do código SQL: " . $conn->error);
+            $sql_query = $mysqli->query($sql_code) or die ("Falha na execução do código SQL: " . $mysqli->error);
 
             $quantidade = $sql_query->num_rows;
 
             if($quantidade == 1){
                 $usuario = $sql_query->fetch_assoc();
-
-                if(!isset($_SESSION)){
-                    session_start();
-                }
-
-                $_SESSION['user'] = $usuario['id'];
-                $_SESSION['nome'] = $usuario['nome'];
+                "<script>alert('Logado Com sucesso!') </script>";
+                "<script>console.log('ACESSO AUTORIZADO!') </script>";
             }else{
                 "<script>alert('Falha ao Logar! E-mail ou senha incorreos') </script>";
+                "<script>console.log('ACESSO NEGADO!') </script>";
             }
 
         }

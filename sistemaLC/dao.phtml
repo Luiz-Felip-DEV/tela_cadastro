@@ -1,0 +1,60 @@
+<?php
+
+     function inserirUsuario($nome,$email,$telefone,$senha){
+        $dbHosta = 'localhost';
+        $dbUsername = 'root';
+        $dbPassword = '';
+        $dbName = 'dog_ti';
+        $conn = new mysqli($dbHosta,$dbUsername,$dbPassword,$dbName);
+        
+        $result = mysqli_query($conn, "INSERT INTO cadastro_dog(nome_cadas,email_cadas, telefone_cadas, senha_cadas) VALUES('$nome','$email','$telefone','$senha')");
+    }
+
+    function trazerDados($email, $senha){
+        $dbHosta = 'localhost';
+        $dbUsername = 'root';
+        $dbPassword = '';
+        $dbName = 'dog_ti';
+        $conn = new mysqli($dbHosta,$dbUsername,$dbPassword,$dbName);
+
+        $sql = "SELECT email_cadas, senha_cadas FROM cadastro_dog";
+        $res = $conn->query($sql);
+        $qtd = $res->num_rows;
+
+        if ($qtd > 0){
+            print "<script>console.log('Usuarios encontrados')</script>";
+            while($row = $res->fetch_object()){
+                $emai = $row->email_cadas;
+                $senh = $row->senha_cadas;
+                print $row->email_cadas;
+                print $row->senha_cadas;
+                $resultado = verificaDados($email, $senha,$emai,$senh);
+                if ( $resultado == 1) {
+                    print "<script>console.log('Dados Conferem, Seja Bem Vindo!') </script>";
+                    return 1;
+                }else{
+                    print "<script>console.log('Dados não conferem, Acesso Negado!') </script>";
+                    return 2;
+                }
+            }
+        }
+    }
+
+    function verificaDados($emailu, $senhau, $emailbd, $senhabd){
+
+        if ($emailu === $emailbd){
+            print "<script>console.log('Email correto, passando para a próxima fase') </script>";
+            if($senhau === $senhabd){
+                print "<script>console.log('Email e Senha Corretos, Acesso Aprovado!') </script>";
+                return 1;
+            }else{
+                print "<script>console.log('Email válido, Senha incorreta, ACESSO NEGADO!')</script>";
+                return 2;
+            }
+        }else{
+            print "<script>console.log('Email inválido, ACESSO NEGADO') </script>";
+            return 2;
+        }
+    }
+			
+?>
