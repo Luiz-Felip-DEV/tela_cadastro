@@ -1,32 +1,18 @@
 <?php 
-
-        include('config.php');
-    if (isset($_POST['login']) || isset($_POST['senha'])){
-        if(strlen($_POST['login'] == 0)){
-            "<script>alert('Preencha seu email!')</script>";
-        }else if(strlen($_POST['senha']) == 0){
-            "<script>alert('Preencha sua senha!')</script>";
+    require_once('dao.php');
+    if(isset($_POST['submit'])){
+        $emailUsuario = $_POST['login'];
+        $senhaUsuario = $_POST['senha'];
+        if (trazerDados($emailUsuario, $senhaUsuario)){
+            $mensagem = "Login Efetuado com sucesso...";
+            echo '<script>alert("'.$mensagem.'");</script>';
         }else{
-            $email = $mysqli->real_escape_string($_POST['login']);
-            $senha = $mysqli->real_escape_string($_POST['senha']);
-
-            $sql_code = "SELECT * FROM cadastro_dog WHERE email_cadas = '$email' AND senha_cadas = '$senha' ";
-
-            $sql_query = $mysqli->query($sql_code) or die ("Falha na execução do código SQL: " . $mysqli->error);
-
-            $quantidade = $sql_query->num_rows;
-
-            if($quantidade == 1){
-                $usuario = $sql_query->fetch_assoc();
-                "<script>alert('Logado Com sucesso!') </script>";
-                "<script>console.log('ACESSO AUTORIZADO!') </script>";
-            }else{
-                "<script>alert('Falha ao Logar! E-mail ou senha incorreos') </script>";
-                "<script>console.log('ACESSO NEGADO!') </script>";
-            }
-
+            $mensagem = "Dados Incorretos, tente novamente!";
+            echo '<script>alert("'.$mensagem.'");</script>';
         }
+
     }
+
 
 ?>
 
@@ -76,7 +62,7 @@
                     </div>
 
                     <div class="forget">
-                        <label for=""><input type="checkbox">Lembrar-se <a href="">Lembrar Senha</a></label>
+                        <label for=""><input type="checkbox" required>Lembrar-se <a href="">Lembrar Senha</a></label>
                     </div>
                     <button type="submit" name="submit" id="submit"><ion-icon name="paper-plane-outline"></ion-icon></button>
                     <div class="registrar">

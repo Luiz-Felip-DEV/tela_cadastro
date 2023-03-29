@@ -15,30 +15,21 @@
         $dbUsername = 'root';
         $dbPassword = '';
         $dbName = 'dog_ti';
-        $conn = new mysqli($dbHosta,$dbUsername,$dbPassword,$dbName);
-
+        $conn = mysqli_connect($dbHosta,$dbUsername,$dbPassword, $dbName);
         $sql = "SELECT email_cadas, senha_cadas FROM cadastro_dog";
-        $res = $conn->query($sql);
-        $qtd = $res->num_rows;
+        $query = mysqli_query($conn, $sql);
 
-        if ($qtd > 0){
-            print "<script>console.log('Usuarios encontrados')</script>";
-            while($row = $res->fetch_object()){
-                $emai = $row->email_cadas;
-                $senh = $row->senha_cadas;
-                print $row->email_cadas;
-                print $row->senha_cadas;
-                $resultado = verificaDados($email, $senha,$emai,$senh);
-                if ( $resultado == 1) {
-                    print "<script>console.log('Dados Conferem, Seja Bem Vindo!') </script>";
-                    return 1;
-                }else{
-                    print "<script>console.log('Dados não conferem, Acesso Negado!') </script>";
-                    return 2;
-                }
-            }
+        while ($resultado = mysqli_fetch_array($query)){
+            if ($resultado['email_cadas'] == $email && $resultado['senha_cadas'] == $senha){
+                return true;
+                break;
+        }else{
+            return false;
         }
+
+        
     }
+}
 
     function verificaDados($emailu, $senhau, $emailbd, $senhabd){
 
