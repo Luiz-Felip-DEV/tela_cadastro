@@ -9,11 +9,14 @@
 
             $testeTelefone = "".$telefoneUsuario;
 
+            echo '<script>alert("'.$telefoneUsuario.'");</script>';
+            echo '<script>alert("'.$testeTelefone.'");</script>';
+
             if(strlen($nomeUsuario) >= 3){
                 if(strlen($testeTelefone) == 10 || strlen($testeTelefone) == 11){
                     if ($senhaUsuario === $confirmarUsuario){
                         require_once('dao.php');
-                        inserirUsuario(ucwords($nomeUsuario),$emailUsuario,intval($testeTelefone),$senhaUsuario);
+                        inserirUsuario(ucwords($nomeUsuario),$emailUsuario,$testeTelefone,$senhaUsuario);
                         $mensagem = "DADOS ENVIADOS COM SUCESSO, VOLTE SEMPRE";
                         echo '<script>alert("'.$mensagem.'");</script>';
                         

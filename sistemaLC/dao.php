@@ -30,22 +30,5 @@
         
     }
 }
-
-    function verificaDados($emailu, $senhau, $emailbd, $senhabd){
-
-        if ($emailu === $emailbd){
-            print "<script>console.log('Email correto, passando para a próxima fase') </script>";
-            if($senhau === $senhabd){
-                print "<script>console.log('Email e Senha Corretos, Acesso Aprovado!') </script>";
-                return 1;
-            }else{
-                print "<script>console.log('Email válido, Senha incorreta, ACESSO NEGADO!')</script>";
-                return 2;
-            }
-        }else{
-            print "<script>console.log('Email inválido, ACESSO NEGADO') </script>";
-            return 2;
-        }
-    }
 			
 ?>
