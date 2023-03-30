@@ -23,8 +23,6 @@
             if ($resultado['email_cadas'] == $email && $resultado['senha_cadas'] == $senha){
                 return true;
                 break;
-        }else{
-            return false;
         }
 
         

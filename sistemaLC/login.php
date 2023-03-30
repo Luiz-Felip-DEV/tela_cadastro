@@ -6,6 +6,9 @@
         if (trazerDados($emailUsuario, $senhaUsuario)){
             $mensagem = "Login Efetuado com sucesso...";
             echo '<script>alert("'.$mensagem.'");</script>';
+            header('Location: home.html');
+            session_start();
+            exit();
         }else{
             $mensagem = "Dados Incorretos, tente novamente!";
             echo '<script>alert("'.$mensagem.'");</script>';

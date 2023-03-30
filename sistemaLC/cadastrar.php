@@ -9,9 +9,6 @@
 
             $testeTelefone = "".$telefoneUsuario;
 
-            echo '<script>alert("'.$telefoneUsuario.'");</script>';
-            echo '<script>alert("'.$testeTelefone.'");</script>';
-
             if(strlen($nomeUsuario) >= 3){
                 if(strlen($testeTelefone) == 10 || strlen($testeTelefone) == 11){
                     if ($senhaUsuario === $confirmarUsuario){
