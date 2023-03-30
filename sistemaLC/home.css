@@ -123,4 +123,21 @@ a{
         opacity: 0;
         visibility: hidden;
     }
+    .main{
+        margin-left: 100px;
+        margin-right: 6px;
+        overflow: hidden;
+        text-align: center;
+        margin-top: 20%;
+    }
+}
+
+.git-span{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 2rem;
+} 
+
+.finalizado{
+    font-size: 4rem;
+    color: azure;
 }
