@@ -13,11 +13,25 @@
                 if(strlen($testeTelefone) == 10 || strlen($testeTelefone) == 11){
                     if ($senhaUsuario === $confirmarUsuario){
                         require_once('dao.php');
-                        inserirUsuario(ucwords($nomeUsuario),$emailUsuario,$testeTelefone,$senhaUsuario);
-                        $mensagem = "DADOS ENVIADOS COM SUCESSO, VOLTE SEMPRE";
-                        echo '<script>alert("'.$mensagem.'");</script>';
-                        
-                    
+                        if (testarEmail($emailUsuario)){
+                            if (emailRepetido($emailUsuario)){
+                                $mensagem = "Email já consta na base de dados, FAÇA O LOGIN!";
+                                echo '<script>alert("'.$mensagem.'");</script>';
+                            }else{
+                                if (telefoneRepetido($telefoneUsuario)){
+                                    $mensagem = "Telefone já consta na base de dados, tente outro!";
+                                    echo '<script>alert("'.$mensagem.'");</script>';
+                                }else{
+                                    inserirUsuario(ucwords($nomeUsuario),$emailUsuario,$testeTelefone,$senhaUsuario);
+                                    $mensagem = "SUCESSO! Cadastro feito com êxito!";
+                                    echo '<script>alert("'.$mensagem.'");</script>';
+                                }
+                               
+                            }
+                        }else{
+                            $mensagem = "ERRO! Email inválido";
+                            echo '<script>alert("'.$mensagem.'");</script>';
+                        } 
                     }else{
                         $mensagem = "ERROR! Confirmação de senha incorreta";
                         echo '<script>alert("'.$mensagem.'");</script>';
@@ -43,6 +57,7 @@
     <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <title>CADASTRO</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 
@@ -107,6 +122,5 @@
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="script.js"></script>
-    
 </body>
 </html>
