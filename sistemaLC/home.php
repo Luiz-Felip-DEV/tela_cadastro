@@ -1,3 +1,14 @@
+<?php 
+    session_start();
+
+    $nomeUsuario = $_SESSION['usuario'];
+    $mensagem = "Seja Bem vindo $nomeUsuario";
+    echo '<script>alert("'.$mensagem.'");</script>';
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>

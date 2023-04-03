@@ -36,7 +36,8 @@ function trazerNome($email, $senha){
         $sql = "select nome_cadas from cadastro_dog where email_cadas = '$email' and senha_cadas = '$senha';";
         $query = mysqli_query($conn, $sql);
 
-        return $sql;
+        $resultado = mysqli_fetch_array($query);
+        return $resultado['nome_cadas'];
 }
 
 function excluirUsuario(){
@@ -103,7 +104,5 @@ function telefoneRepetido($telefone){
         
     }
 }
-
-
 			
 ?>

@@ -1,13 +1,16 @@
 <?php 
+    session_start();
     require_once('dao.php');
     if(isset($_POST['submit'])){
         $emailUsuario = $_POST['login'];
         $senhaUsuario = $_POST['senha'];
         if (trazerDados($emailUsuario, $senhaUsuario)){
             $mensagem = "Login Efetuado com sucesso...";
-            echo '<script>alert("'.$mensagem.'");</script>';
-            header('Location: home.html');
+            $nome = trazerNome($emailUsuario, $senhaUsuario);
             session_start();
+            $_SESSION['usuario'] = $nome;
+            echo '<script>alert("'.$mensagem.'");</script>';
+            header('Location: home.php');
             exit();
         }else{
             $mensagem = "Dados Incorretos, tente novamente!";
@@ -27,6 +30,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="estilo.css">
     <title>TELA DE LOGIN</title>
 </head>
 <body>
