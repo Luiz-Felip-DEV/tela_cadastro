@@ -69,7 +69,7 @@
                     </div>
 
                     <div class="forget">
-                        <label for=""><input type="checkbox" required>Lembrar-se <a href="">Lembrar Senha</a></label>
+                        <label for=""><input type="checkbox" required>Lembrar-se <a href="recup_senha.php">Lembrar Senha</a></label>
                     </div>
                     <button type="submit" name="submit" id="submit"><ion-icon name="paper-plane-outline"></ion-icon></button>
                     <div class="registrar">

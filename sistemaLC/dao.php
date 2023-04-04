@@ -127,5 +127,23 @@ function buscarID($email, $senha){
 
         return $resultado['id_usuario'];
 }
+
+function checarDados($em, $tele, $nova){
+    $dbHosta = 'localhost';
+    $dbUsername = 'root';
+    $dbPassword = '';
+    $dbName = 'dog_ti';
+    $conn = mysqli_connect($dbHosta,$dbUsername,$dbPassword, $dbName);
+    $sql = "SELECT email_cadas, telefone_cadas FROM cadastro_dog";
+    $query = mysqli_query($conn, $sql);
+
+    while ($resultado = mysqli_fetch_array($query)){
+        if ($resultado['email_cadas'] == $em && $resultado['telefone_cadas'] == $tele){
+            alterarSenha($em, $tele, $nova);
+            return true;
+            break;
+        }
+}
+}
 			
 ?>

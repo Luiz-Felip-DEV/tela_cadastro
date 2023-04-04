@@ -56,8 +56,7 @@
         </nav>
     </aside>
     <main class="main">
-        <h1 class="finalizado"><strong>PROJETO FINALIZADO</strong>🔥🔥</h1>
-        <span class="git-span"><p>feito por Luiz Felipe:</p> <a href="https://github.com/Luiz-Felip-DEV" class="git">git hub</a></span>
+        <img src="imagens/ransomware-animate.svg" class="img-home" alt="Imagem Aleatoria">
     </main>
 
     <script src="js/script.js"></script>
