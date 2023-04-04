@@ -40,13 +40,26 @@ function trazerNome($email, $senha){
         return $resultado['nome_cadas'];
 }
 
-function excluirUsuario(){
-// ainda será desenvolvido
-
+function excluirUsuario($emaill, $senhaa){
+    $dbHosta = 'localhost';
+    $dbUsername = 'root';
+    $dbPassword = '';
+    $dbName = 'dog_ti';
+    $conn = mysqli_connect($dbHosta,$dbUsername,$dbPassword, $dbName);
+    $idUsuario = buscarID($emaill, $senhaa);
+    $sql = "delete from cadastro_dog where id_usuario = $idUsuario";
+    $query = mysqli_query($conn, $sql);
 }
 
-function alterarDados(){
-    // ainda será desenvolvido
+function alterarSenha($emaill, $telefonee, $novaSenha){
+        $dbHosta = 'localhost';
+        $dbUsername = 'root';
+        $dbPassword = '';
+        $dbName = 'dog_ti';
+        $conn = mysqli_connect($dbHosta,$dbUsername,$dbPassword, $dbName);
+        $sql = "update cadastro_dog set senha_cadas = '$novaSenha' where email_cadas = '$emaill' and telefone_cadas = '$telefonee' ";
+        $query = mysqli_query($conn, $sql);
+        echo "<script>console.log('alteracao de senha feito com sucesso!')</script>";
 
 }
 
@@ -99,10 +112,20 @@ function telefoneRepetido($telefone){
                 return true;
                 break;
         }
-
-
-        
     }
+}
+
+function buscarID($email, $senha){
+        $dbHosta = 'localhost';
+        $dbUsername = 'root';
+        $dbPassword = '';
+        $dbName = 'dog_ti';
+        $conn = mysqli_connect($dbHosta,$dbUsername,$dbPassword, $dbName);
+        $sql = "select id_usuario from cadastro_dog where email_cadas = '$email' and senha_cadas = '$senha';";
+        $query = mysqli_query($conn, $sql);
+        $resultado = mysqli_fetch_array($query);
+
+        return $resultado['id_usuario'];
 }
 			
 ?>

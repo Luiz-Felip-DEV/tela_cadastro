@@ -2,10 +2,10 @@
 
     require_once ('dao.php');
 
-    $email = "luizfelipe098@icloud.com";
-    $senha = "Necromante2209!";
+    $email = 'luizfelipe098@gmail.com';
+    $telefone = '34992472620';
+    $senha = '12345';
 
-    $nome = trazerNome($email, $senha);
-    echo $nome;
+    alterarSenha($email, $telefone, $senha);
 
 ?>
