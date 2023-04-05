@@ -3,11 +3,12 @@
     require_once('dao.php');
 
     if (isset($_POST['submit'])){
-        $emailUsuario = $_POST['email'];
-        $telefoneUsuario = $_POST['telefone'];
-        $novaSenhaUsuario = $_POST['nova-senha'];
+        $emailUsuario = str_replace(' ', '', $_POST['email']);
+        $telefoneUsuario =  $_POST['telefone'];
+        $novaSenhaUsuario = str_replace(' ', '', $_POST['nova-senha']);
+        $telefoneFormatado = formatPhone($telefoneUsuario);
 
-        if(checarDados($emailUsuario, $telefoneUsuario, $novaSenhaUsuario)){
+        if(checarDados($emailUsuario, $telefoneFormatado, $novaSenhaUsuario)){
             $mensagem = "Senha alterada com sucesso...";
             echo '<script>alert("'.$mensagem.'");</script>';
             header('Location: login.php');

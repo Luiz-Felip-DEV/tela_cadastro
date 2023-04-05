@@ -1,11 +1,13 @@
 <?php 
 
-    require_once ('dao.php');
+    $to      = 'luzyour078@gmail.com';
+    $subject = 'Teste de envio de e-mail';
+    $message = 'Olá, você é programador web?';
+    $headers = 'From: fluiz04989@gmail.com' . "\r\n" . 
+            'Reply-To: fluiz04989@gmail.com';
 
-    $email = 'luizfelipe098@gmail.com';
-    $telefone = '34992472620';
-    $senha = '12345';
+    mail($to,$subject, $message, $headers);
 
-    alterarSenha($email, $telefone, $senha);
+    echo "Enviado!";
 
 ?>

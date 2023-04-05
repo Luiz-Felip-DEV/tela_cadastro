@@ -2,8 +2,8 @@
     session_start();
     require_once('dao.php');
     if(isset($_POST['submit'])){
-        $emailUsuario = $_POST['login'];
-        $senhaUsuario = $_POST['senha'];
+        $emailUsuario = str_replace(' ', '', $_POST['login']);
+        $senhaUsuario = str_replace(' ', '', $_POST['senha']);
         if (trazerDados($emailUsuario, $senhaUsuario)){
             $mensagem = "Login Efetuado com sucesso...";
             $nome = trazerNome($emailUsuario, $senhaUsuario);

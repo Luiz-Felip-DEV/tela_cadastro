@@ -138,12 +138,24 @@ function checarDados($em, $tele, $nova){
     $query = mysqli_query($conn, $sql);
 
     while ($resultado = mysqli_fetch_array($query)){
-        if ($resultado['email_cadas'] == $em && $resultado['telefone_cadas'] == $tele){
+        if ($resultado['email_cadas'] == $em && formatPhone($resultado['telefone_cadas']) === $tele){
             alterarSenha($em, $tele, $nova);
             return true;
             break;
         }
 }
+}
+
+function formatPhone($phone)
+{
+    $formatedPhone = preg_replace('/[^0-9]/', '', $phone);
+    $matches = [];
+    preg_match('/^([0-9]{2})([0-9]{4,5})([0-9]{4})$/', $formatedPhone, $matches);
+    if ($matches) {
+        return '('.$matches[1].') '.$matches[2].'-'.$matches[3];
+    }
+
+    return $phone;
 }
 			
 ?>

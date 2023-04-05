@@ -2,10 +2,10 @@
       if(isset($_POST['submit'])){
 
             $nomeUsuario = $_POST['nome'];
-            $emailUsuario = $_POST['email'];
+            $emailUsuario = str_replace(' ', '', $_POST['email']);
             $telefoneUsuario = $_POST['telefone'];
-            $senhaUsuario = $_POST['senha'];
-            $confirmarUsuario = $_POST['conf_senha'];
+            $senhaUsuario = str_replace(' ', '', $_POST['senha']);
+            $confirmarUsuario = str_replace(' ', '', $_POST['conf_senha']);
 
             $testeTelefone = "".$telefoneUsuario;
 
@@ -22,7 +22,8 @@
                                     $mensagem = "Telefone já consta na base de dados, tente outro!";
                                     echo '<script>alert("'.$mensagem.'");</script>';
                                 }else{
-                                    inserirUsuario(ucwords($nomeUsuario),$emailUsuario,$testeTelefone,$senhaUsuario);
+                                    $telefoneFormatado = formatPhone($testeTelefone);
+                                    inserirUsuario(ucwords($nomeUsuario),$emailUsuario,$telefoneFormatado,$senhaUsuario);
                                     $mensagem = "SUCESSO! Cadastro feito com êxito!";
                                     echo '<script>alert("'.$mensagem.'");</script>';
                                 }
